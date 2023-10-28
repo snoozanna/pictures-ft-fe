@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
-    "gatsby-plugin-transitions",
+    // "gatsby-plugin-transitions",
     {
       resolve: `gatsby-plugin-scroll-reveal`,
       options: {

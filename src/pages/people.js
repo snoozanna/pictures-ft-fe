@@ -1,9 +1,7 @@
-import { Link, graphql, useStaticQuery } from "gatsby";
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { devices } from "../styles/breakpoints.js";
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
-
 import { useQuery, useLazyQuery, gql } from "@apollo/client";
 import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
@@ -68,7 +66,8 @@ const Person = ({ index, image, totalImages }) => {
 
   return (
     <div className={`img-wrapper element-${index}`} style={imgStyles}>
-      <img className="img" src={image.asset.url} alt={`Image ${index}`} />
+       {/* <div className={`img-wrapper element-${index}`}>     */}
+         <img className="img" src={image.asset.url} alt={`Image ${index}`}/>
     </div>
   );
 };
