@@ -59,7 +59,7 @@ const Footer = ({showPics, setShowPics}) => {
         <Link to="/people">People</Link>
         <button onClick={refresh}>Refresh Page</button>
         
-        <button onClick={clickHandler}>Go</button>
+        <button onClick={clickHandler}>Show/Hide</button>
       </nav>
     </FooterStyles>
   );
