@@ -7,68 +7,75 @@ import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import Loader from "../components/Loader/index.js";
 import GET_PEOPLE_OPTIONS from "../queries/GET_PEOPLE_OPTIONS.js";
+import Footer from "../components/Footer.js";
 
 const CloudPageStyles = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  align-items: center;
+  /* align-items: center; */
   min-height: 90vh;
-  .img-group-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    gap: 2rem;
-    height: 100%;
-  }
-  .img-wrapper {
-    flex: 1;
-    min-width: 100px;
-    max-width: calc(33.33% - 2rem);
-    box-sizing: border-box;
-    /* flex-grow: initial; */
-    overflow: hidden; /* Hide overflow when images shrink */
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0px;
-  }
-  .img {
-    max-width: 100%; /* Ensure images don't exceed their container */
-  }
-  .element {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.5s,
-      transform 0.5s;
-  }
-  .animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-bottom: 10rem;
 `;
+
+const FlexContainerStyles = styled.div`
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: auto;
+  gap: 1.5rem;
+  height: 70vh;
+`;
+
+
+
+const FlexItemStyles = styled.div`
+  /* flex: calc(100% / ${(props) => props.totalImages}); */
+  width: calc(100% / ${(props) => props.totalImages}*100);
+  /* flex: 1; */
+  /* width: 100px; */
+  max-width: 100%;
+  /* min-width: 100px; */
+  box-sizing: border-box;
+  overflow: hidden;
+`;
+
+
 
 const Person = ({ index, image, totalImages }) => {
   useEffect(() => {
     gsap.registerPlugin(CSSPlugin);
 
+    // Generate a random delay value between 0 and 10 seconds.
+    const randomDelay = Math.random() * 10000;
+
+    // Calculate the animation duration for each element to ensure the total duration is 10 seconds.
+    const animationDuration = 0.5;
+
     gsap.fromTo(
       `.element-${index}`,
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, delay: 0.2 * index },
+      {
+        opacity: 1,
+        y: 0,
+        duration: animationDuration,
+        delay: randomDelay / 1000,
+      },
     );
   }, [index]);
 
-  const imgStyles = {
-    width: `${100 / totalImages}%`,
-  };
+  // const imgStyles = {
+  //   width: `${100 / totalImages}%`,
+  // };
+  // console.log("totalImages", totalImages);
 
   return (
-    <div className={`img-wrapper element-${index}`} style={imgStyles}>
-       {/* <div className={`img-wrapper element-${index}`}>     */}
-         <img className="img" src={image.asset.url} alt={`Image ${index}`}/>
-    </div>
+    <FlexItemStyles className={`img-wrapper element-${index}`} 
+    // style={imgStyles}
+     totalImages={totalImages}
+     >
+      <img className="img" src={image.asset.url} alt={`Image ${index}`} />
+    </FlexItemStyles>
   );
 };
 
@@ -83,17 +90,12 @@ const CloudPage = () => {
 console.log(data)
   const images = data.options[0].images;
   console.log(images.length)
-  const clickHandler = () => {
-    setShowPics(!showPics);
-
-  };
-
 
 
   return (
     <CloudPageStyles>
       {showPics ? (
-        <div className="img-group-container">
+        <FlexContainerStyles>
           {images.map((image, index) => {
             return (
               <Person
@@ -104,9 +106,9 @@ console.log(data)
               />
             );
           })}
-        </div>
+        </FlexContainerStyles>
       ) : null}
-      <button onClick={clickHandler}>Go</button>
+      <Footer showPics={showPics} setShowPics={setShowPics}/>
     </CloudPageStyles>
   );
 };

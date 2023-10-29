@@ -31,8 +31,8 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     /* background-image: url(${bg}); */
-    background-color: var(--blue) ;
-    background-color: var(--orange) ;
+    background-color: black ;
+
 
     font-size: 10px;
   }
@@ -43,7 +43,7 @@ body {
   min-height: 100vh;
     font-size: 1.6rem;
   margin: 0;
-  color: black;
+  color: white;
 }
 
 *,
@@ -126,7 +126,7 @@ button * {
   }
 
   button {
-    background: var(--pink);
+    background: var(--orange);
     color: black;
     font-weight: 600;
     border: 2px solid black;
@@ -134,7 +134,7 @@ button * {
     border-radius: 8px;
     cursor: pointer;
     --cast: 4px;
-    box-shadow: var(--cast) var(--cast) 0 var(--black);
+    box-shadow: var(--cast) var(--cast) 0 var(--white);
     /* text-shadow: 0.5px 0.5px 0 var(--black); */
     transition: all 0.2s;
     &:hover {

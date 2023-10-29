@@ -6,13 +6,13 @@ import { Link } from 'gatsby';
 import { devices } from '../styles/breakpoints';
 
 const FooterStyles = styled.footer`
-background-color:var(--blue);
-background-color:var(--orange);
+background: black;
 z-index: 9999;
 position:fixed;
 bottom:0;
+left: 0;
 padding:  var(--padding);
-padding-top: 0;
+/* padding-top: 0; */
 width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -42,15 +42,24 @@ nav{
     }
 `;
 
-const Footer = () => {
+const Footer = ({showPics, setShowPics}) => {
+  const clickHandler = () => {
+    setShowPics(!showPics);
+  };
 
-
+  const refresh = () => {
+    window.location.reload();
+  }
   return (
     <FooterStyles>
       <nav>
-        <Link to="/admin">Upload images</Link>
+        <a href="https://pictures-experiment.sanity.studio/" target="_blank">
+          Database
+        </a>
         <Link to="/people">People</Link>
-
+        <button onClick={refresh}>Refresh Page</button>
+        
+        <button onClick={clickHandler}>Go</button>
       </nav>
     </FooterStyles>
   );

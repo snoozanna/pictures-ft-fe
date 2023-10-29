@@ -13,7 +13,7 @@ const Typography = createGlobalStyle`
      font-family: "Roboto", -apple-system, 
      BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
      font-weight: 300;
-    color: var(--black);
+    color: white;
   }
   p, li {
     letter-spacing: 0.5px;

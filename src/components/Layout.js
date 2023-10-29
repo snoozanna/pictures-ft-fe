@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { navigate } from 'gatsby';
-import Footer from './Footer';
 import 'normalize.css';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
@@ -46,7 +45,6 @@ return (
 
         {/* </ScrollReveal> */}
       </MainStyles>
-      <Footer />
     </ContentStyles>
     {/* </SiteBorderStyles> */}
   </>
