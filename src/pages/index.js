@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { devices } from '../styles/breakpoints.js';
+import Footer from '../components/Footer.js';
+import { Link } from 'gatsby';
 
 
 
@@ -13,6 +15,10 @@ const HomePageStyles = styled.section`
   display: flex;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
+  h3{
+    margin-block-end: 5rem;
+  }
 
   @media ${devices.mobileL} {
     grid-template-columns: repeat(3, minmax(50px, 1fr));
@@ -30,6 +36,8 @@ const HomePage = () => {
   return (
     <HomePageStyles>
       <h3>First Trimester Pictures Experiment </h3>
+
+      <Link to="/people"><button>GO</button></Link>
     </HomePageStyles>
   );
 }
