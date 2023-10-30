@@ -82,18 +82,6 @@ const FlexItemStyles = styled.div`
   object-fit: cover;
 `;
 
-// const FlexItemStyles = styled.div`
-  
-//   width: calc(100% / ${(props) => props.totalImages}*100);
-
-//   max-width: 100%;
-
-//   box-sizing: border-box;
-
-//   object-fit: cover;
-//   border: 3px solid white;
-// `;
-
 
 
 const Person = ({ index, image, totalImages }) => {
