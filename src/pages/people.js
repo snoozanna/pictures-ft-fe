@@ -38,7 +38,7 @@ const FlexContainerStyles = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     grid-gap: 2rem;
   }
-  s &.large {
+&.large {
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
     grid-gap: 2rem;
   }
