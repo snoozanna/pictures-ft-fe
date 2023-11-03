@@ -154,15 +154,15 @@ button * {
   }
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--pink) var(--white);
+    scrollbar-color: black;
   }
   body::-webkit-scrollbar-track {
-    background: var(--white);
+    background: black;
   }
   body::-webkit-scrollbar-thumb {
-    background-color: var(--pink) ;
+    background-color: black ;
     border-radius: 6px;
-    border: 3px solid var(--white);
+    border: 3px solid black;
   }
 
   hr {
