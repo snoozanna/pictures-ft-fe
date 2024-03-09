@@ -38,7 +38,7 @@ const FlexContainerStyles = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     grid-gap: 2rem;
   }
-&.large {
+  &.large {
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
     grid-gap: 2rem;
   }
@@ -59,11 +59,15 @@ const FlexContainerStyles = styled.div`
     grid-gap: 2rem;
   }
   &.xxsmall {
-    grid-template-columns: repeat(auto-fill,minmax(7.5%,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(7.5%, 1fr));
     grid-gap: 1rem;
   }
-   &.xxxsmall {
-    grid-template-columns: repeat(auto-fill,minmax(7.5%,1fr));
+  &.xxxsmall {
+    grid-template-columns: repeat(auto-fill, minmax(7%, 1fr));
+    grid-gap: 1rem;
+  }
+  &.xxxxsmall {
+    grid-template-columns: repeat(auto-fill, minmax(6.5%, 1fr));
     grid-gap: 1rem;
   }
 `;
@@ -124,25 +128,26 @@ const Person = ({ index, image, totalImages }) => {
 
 const CloudPage = () => {
   const [showPics, setShowPics] = useState(false);
-//   // const [getPeople, { loading, error, data }] = useLazyQuery(GET_CLOUD_PEOPLE);
+  //   // const [getPeople, { loading, error, data }] = useLazyQuery(GET_CLOUD_PEOPLE);
   const { loading, error, data } = useQuery(GET_PEOPLE_OPTIONS);
 
   if (loading) return <Loader />;
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
   if (!data) return <text>Could not find data</text>;
-console.log(data)
-  const images = data.options[0].images;
-  console.log(images.length)
-// const images = ["test", "test", "test", "test", "test", "test", "test", "test", "test",];
+  // console.log(data);
+  const images = [...data.options[0].images]; // Create a shallow copy of the array
+  // console.log("images", images);
+  const reversed = images.reverse(); // Reverse the order of the copied array
+  // console.log("reversed", reversed);
 
-  let flexSize = "xlarge"
-if (images.length <= 12) {
-    flexSize = "xlarge"
-}else if (images.length >= 13 && images.length <= 24) {
-    flexSize = "large"
+  let flexSize = "xlarge";
+  if (images.length <= 12) {
+    flexSize = "xlarge";
+  } else if (images.length >= 13 && images.length <= 24) {
+    flexSize = "large";
   } else if (images.length >= 25 && images.length <= 35) {
     flexSize = "medium";
-  }  else if (images.length >= 36 && images.length <= 48) {
+  } else if (images.length >= 36 && images.length <= 48) {
     flexSize = "med";
   } else if (images.length >= 49 && images.length <= 70) {
     flexSize = "small";
@@ -152,28 +157,30 @@ if (images.length <= 12) {
     flexSize = "xxsmall";
   } else if (images.length >= 109 && images.length <= 160) {
     flexSize = "xxxsmall";
+  } else if (images.length >= 161 && images.length <= 250) {
+    flexSize = "xxxxsmall";
   }
 
-  console.log("flexSize", flexSize)
-    return (
-      <CloudPageStyles>
-        {showPics ? (
-          <FlexContainerStyles className={`${flexSize}`}>
-            {images.map((image, index) => {
-              return (
-                <Person
-                  key={index}
-                  index={index}
-                  image={image}
-                  totalImages={images.length}
-                />
-              );
-            })}
-          </FlexContainerStyles>
-        ) : null}
-        <Footer showPics={showPics} setShowPics={setShowPics} />
-      </CloudPageStyles>
-    );
+  console.log("flexSize", flexSize);
+  return (
+    <CloudPageStyles>
+      {showPics ? (
+        <FlexContainerStyles className={`${flexSize}`}>
+          {images.map((image, index) => {
+            return (
+              <Person
+                key={index}
+                index={index}
+                image={image}
+                totalImages={images.length}
+              />
+            );
+          })}
+        </FlexContainerStyles>
+      ) : null}
+      <Footer showPics={showPics} setShowPics={setShowPics} />
+    </CloudPageStyles>
+  );
 };
 
 

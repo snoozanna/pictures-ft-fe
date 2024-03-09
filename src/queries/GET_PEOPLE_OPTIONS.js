@@ -5,6 +5,7 @@ const GET_PEOPLE_OPTIONS = gql`
     options: allOptions {
       images {
         asset {
+          _createdAt
           _id
           url
           # gatsbyImageData
