@@ -5,7 +5,7 @@ import { devices } from '../styles/breakpoints.js';
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import { useQuery } from "@apollo/client";
-import GET_PEOPLE from "../queries/GET_PEOPLE.js";
+
 import Loader from '../components/Loader/index.js';
 
 const AdminPageStyles = styled.div`

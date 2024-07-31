@@ -4,7 +4,8 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'https://xjzg01oo.api.sanity.io/v1/graphql/production/default/',
+    // uri: 'https://h537re3j.api.sanity.io/v1/graphql/production/default/',
+    uri: 'https://h537re3j.api.sanity.io/v1/graphql/production/default/',
     credentials: 'include',
     fetchOptions: {
       mode: 'cors',

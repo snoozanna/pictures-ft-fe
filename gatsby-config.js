@@ -7,9 +7,9 @@ dotenv.config({ path: ".env" });
 
 module.exports = {
   siteMetadata: {
-    title: `Randomiser Test`,
+    title: `Pictures Display First Trimester`,
     siteUrl: "https://first.trimester",
-    description: "First Trimester by Krisha Istha",
+    description: "Pictures Display First Trimester by Krisha Istha",
     twitter: "@KrishnaIstha",
   },
   plugins: [
@@ -65,10 +65,10 @@ module.exports = {
       // this is the name of the plugin you are adding
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: "xjzg01oo",
+        projectId: "h537re3j",
         dataset: "production",
         watchMode: true,
-        apiVersion: "2023-08-01", // use a UTC date string
+        apiVersion: "2024-07-01", // use a UTC date string
         token: process.env.GATSBY_SANITY_TOKEN,
       },
     },

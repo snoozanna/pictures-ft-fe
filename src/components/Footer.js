@@ -44,7 +44,13 @@ nav{
 
 const Footer = ({showPics, setShowPics}) => {
   const clickHandler = () => {
-    setShowPics(!showPics);
+    setShowPics("highlights");
+    setTimeout(()=> {
+      setShowPics("none");
+    }, [5000])
+    setTimeout(()=> {
+      setShowPics("participants");
+    }, [7000])
   };
 
   const refresh = () => {

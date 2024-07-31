@@ -1,13 +1,13 @@
 
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import styled from "styled-components";
-import { devices } from "../styles/breakpoints.js";
 import { useQuery, useLazyQuery, gql } from "@apollo/client";
-import { gsap } from "gsap";
-import { CSSPlugin } from "gsap/CSSPlugin";
 import Loader from "../components/Loader/index.js";
-import GET_PEOPLE_OPTIONS from "../queries/GET_PEOPLE_OPTIONS.js";
 import Footer from "../components/Footer.js";
+import Person from "../components/Person.js";
+import GET_PEOPLE from "../queries/GET_PEOPLE.js";
+
+
 
 const CloudPageStyles = styled.div`
   display: flex;
@@ -20,14 +20,7 @@ const CloudPageStyles = styled.div`
 `;
 
 const FlexContainerStyles = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-template-rows: auto;
-  gap: 1.5rem;
-  height: 70vh; */
   display: grid;
-
   grid-auto-rows: 1fr; /* Set the height of each row to 1fr for equal distribution */
   /* Adjust the gap as needed */
   justify-content: space-evenly;
@@ -74,69 +67,28 @@ const FlexContainerStyles = styled.div`
 
 
 
-const FlexItemStyles = styled.div`
-  /* flex: calc(100% / ${(props) => props.totalImages}); */
-  width: calc(100% / ${(props) => props.totalImages}*100);
-  /* flex: 1; */
-  /* width: 100px; */
-  max-width: 100%;
-  /* min-width: 100px; */
-  box-sizing: border-box;
-  /* overflow: hidden; */
-  object-fit: cover;
-`;
-
-
-
-const Person = ({ index, image, totalImages }) => {
-  useEffect(() => {
-    gsap.registerPlugin(CSSPlugin);
-
-    // Generate a random delay value between 0 and 10 seconds.
-    const randomDelay = Math.random() * 10000;
-
-    // Calculate the animation duration for each element to ensure the total duration is 10 seconds.
-    const animationDuration = 0.5;
-
-    gsap.fromTo(
-      `.element-${index}`,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: animationDuration,
-        delay: randomDelay / 1000,
-      },
-    );
-  }, [index]);
-
-  // const imgStyles = {
-  //   width: `${100 / totalImages}%`,
-  // };
-  // console.log("totalImages", totalImages);
-
-  return (
-    <FlexItemStyles
-      className={`img-wrapper element-${index}`}
-      // style={imgStyles}
-      totalImages={totalImages}
-    >
-      <img className="img" src={image.asset.url} alt={`Image ${index}`} />
-    </FlexItemStyles>
-  );
-};
-
 const CloudPage = () => {
-  const [showPics, setShowPics] = useState(false);
+  const [showPics, setShowPics] = useState("");
   //   // const [getPeople, { loading, error, data }] = useLazyQuery(GET_CLOUD_PEOPLE);
-  const { loading, error, data } = useQuery(GET_PEOPLE_OPTIONS);
-
+  const { loading, error, data } = useQuery(GET_PEOPLE);
+console.log("running cloud again")
   if (loading) return <Loader />;
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
   if (!data) return <text>Could not find data</text>;
-  // console.log(data);
-  const images = [...data.options[0].images]; // Create a shallow copy of the array
-  // console.log("images", images);
+  console.log(data);
+  let images = [];
+  if (showPics === "highlights" && data.highlights.length > 0) {
+    images = [...data.highlights[0].images];
+    console.log("images in if", images);
+  } else if (showPics === "participants" && data.participants.length > 0) {
+    images = [...data.participants[0].images];
+    console.log("images in if", images);
+  } else{
+    console.log("error with if statement", showPics, data.participants.length )
+  }
+
+  console.log("showPics", showPics);
+  console.log("images", images);
   const reversed = images.reverse(); // Reverse the order of the copied array
   // console.log("reversed", reversed);
 
@@ -161,7 +113,8 @@ const CloudPage = () => {
     flexSize = "xxxxsmall";
   }
 
-  console.log("flexSize", flexSize);
+  // console.log("flexSize", flexSize);
+  console.log("totalImages", images.length);
   return (
     <CloudPageStyles>
       {showPics ? (
@@ -173,6 +126,7 @@ const CloudPage = () => {
                 index={index}
                 image={image}
                 totalImages={images.length}
+                showPics={showPics}
               />
             );
           })}
