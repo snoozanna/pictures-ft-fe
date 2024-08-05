@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
@@ -22,6 +22,7 @@ width: 100%;
     width: 100%;
     display: flex;
   justify-content: space-around; 
+  align-items: end;
   }
   .scroller-wrapper{
     back
@@ -42,15 +43,26 @@ nav{
     }
 `;
 
-const Footer = ({showPics, setShowPics}) => {
+const Footer = ({showPics, setShowPics, llength, setLlength}) => {
+  const [inputValue, setInputValue] = useState("");
   const clickHandler = () => {
-    setShowPics("highlights");
-    setTimeout(()=> {
-      setShowPics("none");
-    }, [5000])
-    setTimeout(()=> {
+    // setShowPics("highlights");
+    // setTimeout(()=> {
+    //   setShowPics("none");
+    // }, [5000])
+    // setTimeout(()=> {
+    //   setShowPics("participants");
+    // }, [6000])
       setShowPics("participants");
-    }, [7000])
+
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleInputButtonClick = () => {
+    setLlength(Number(inputValue));
   };
 
   const refresh = () => {
@@ -59,12 +71,20 @@ const Footer = ({showPics, setShowPics}) => {
   return (
     <FooterStyles>
       <nav>
-        <a href="https://pictures-experiment.sanity.studio/" target="_blank">
+        <a href="https://pictures-ft-update.sanity.studio/" target="_blank">
           Database
         </a>
         <Link to="/people">People</Link>
         <button onClick={refresh}>Refresh Page</button>
-        
+       <div className='inputOptionsWrapper'>
+          <p>No of people: {llength}</p>
+          <input
+    type="number"
+    value={inputValue}
+    onChange={handleInputChange}
+  />
+  <button onClick={handleInputButtonClick}>Save</button>
+       </div>
         <button onClick={clickHandler}>Show/Hide</button>
       </nav>
     </FooterStyles>

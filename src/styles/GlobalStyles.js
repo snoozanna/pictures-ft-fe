@@ -126,7 +126,7 @@ button * {
   }
 
   button {
-    background: var(--orange);
+    background: white;
     color: black;
     font-weight: 600;
     border: 2px solid black;
@@ -134,7 +134,7 @@ button * {
     border-radius: 8px;
     cursor: pointer;
     --cast: 4px;
-    box-shadow: var(--cast) var(--cast) 0 var(--white);
+    box-shadow: var(--cast) var(--cast) 0 var(--orange);
     /* text-shadow: 0.5px 0.5px 0 var(--black); */
     transition: all 0.2s;
     &:hover {
@@ -185,7 +185,7 @@ button * {
   box-sizing: border-box;
   font-size: 62.5%; /* Mostly equivalates to 10px but allows users accessibility zoom settings to work*/
   /* font-size: 10px; */
-  scroll-behavior: smooth;
+  ${'' /* scroll-behavior: smooth; */}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

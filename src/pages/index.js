@@ -35,7 +35,7 @@ const HomePage = () => {
  console.log("process.env.GATSBY_SANITY_TOKEN", process.env.GATSBY_SANITY_TOKEN)
   return (
     <HomePageStyles>
-      <h3>First Trimester Pictures Experiment </h3>
+      <h3>First Trimester Pictures </h3>
 
       <Link to="/people"><button>GO</button></Link>
     </HomePageStyles>
