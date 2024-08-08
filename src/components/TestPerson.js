@@ -7,36 +7,23 @@ import test from "./../assets/images/test.jpg";
 
 const number = 37;
 const FlexItemStyles = styled.div`
-   ${'' /* min-width: ${(props) => props.$imgWidth}%; */}
    min-width: 3vw;
    width:80%;
-    ${'' /* background-color: #3498db; */}
-    ${'' /* transform: scale(calc(1 / 4 * ${(props) => props.$imgWidth})); */}
     
 `;
 
 
-const TestPerson = ({ index, totalImages, totalImagesSqInt, showPics }) => {
+const TestPerson = ({ index, totalImages, totalImagesSqInt, image }) => {
 
     const imgWidth = Math.round(100/totalImagesSqInt);
-
-gsap.registerPlugin(ScrollToPlugin);
-gsap.registerPlugin(CSSPlugin);
+    gsap.registerPlugin(ScrollToPlugin);
+    gsap.registerPlugin(CSSPlugin);
     useEffect(() => {
-        let randomDelay = 0;
-        let animationDuration = 0;
-
- 
-      if (showPics === "highlights") {
-        randomDelay = 0.2 * 10000
-       animationDuration = 2;
-      } else if (showPics === "participants"){
-         randomDelay = Math.random() * 10000;
-           // Generate a random delay value between 0 and 10 seconds.
-         animationDuration = 0.5;
-            // Calculate the animation duration for each element to ensure the total duration is 10 seconds.
-      }
-  
+        let randomDelay = Math.random() * 10000;
+          // Generate a random delay value between 0 and 10 seconds.
+        let animationDuration = 2;
+ // Calculate the animation duration for each element to ensure the total duration is 10 seconds.
+            
       gsap.fromTo(
         `.element-${index}`,
         { opacity: 0, y: 20 },
@@ -49,7 +36,7 @@ gsap.registerPlugin(CSSPlugin);
       );
 
      
-    }, [index]);
+    }, []);
 
     useEffect(() => {
       // Trigger the scroll animation
@@ -70,6 +57,7 @@ gsap.registerPlugin(CSSPlugin);
         $imgWidth={imgWidth}
       >
         <img src={test} alt={`Test image ${index}`} />
+        {/* <img className="img" src={image.asset.url} alt={`Image ${index}`} /> */}
       </FlexItemStyles>
     );
   };

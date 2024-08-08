@@ -23,6 +23,17 @@ width: 100%;
     display: flex;
   justify-content: space-around; 
   align-items: end;
+  .inputOptionsWrapper{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    p{
+    margin-block-end: 0;
+    }
+    input{
+    width: 65px;
+    }
+  }
   }
   .scroller-wrapper{
     back
@@ -46,14 +57,14 @@ nav{
 const Footer = ({showPics, setShowPics, llength, setLlength}) => {
   const [inputValue, setInputValue] = useState("");
   const clickHandler = () => {
-    // setShowPics("highlights");
+    setShowPics("highlights");
     // setTimeout(()=> {
-    //   setShowPics("none");
-    // }, [5000])
-    // setTimeout(()=> {
-    //   setShowPics("participants");
-    // }, [6000])
+    //   setShowPics([]);
+    // }, [7500])
+    setTimeout(()=> {
       setShowPics("participants");
+    }, [9000])
+
 
   };
 
@@ -76,7 +87,7 @@ const Footer = ({showPics, setShowPics, llength, setLlength}) => {
         </a>
         <Link to="/people">People</Link>
         <button onClick={refresh}>Refresh Page</button>
-       <div className='inputOptionsWrapper'>
+  <div className='inputOptionsWrapper'>
           <p>No of people: {llength}</p>
           <input
     type="number"
@@ -85,7 +96,7 @@ const Footer = ({showPics, setShowPics, llength, setLlength}) => {
   />
   <button onClick={handleInputButtonClick}>Save</button>
        </div>
-        <button onClick={clickHandler}>Show/Hide</button>
+        <button onClick={clickHandler}>Show People</button>
       </nav>
     </FooterStyles>
   );

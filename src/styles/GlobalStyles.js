@@ -126,19 +126,21 @@ button * {
   }
 
   button {
-    background: white;
-    color: black;
+    background: transparent;
+    color: white;
     font-weight: 600;
-    border: 2px solid black;
+    border: 2px solid white;
     padding: 0.6rem 1rem;
     border-radius: 8px;
     cursor: pointer;
     --cast: 4px;
-    box-shadow: var(--cast) var(--cast) 0 var(--orange);
-    /* text-shadow: 0.5px 0.5px 0 var(--black); */
+    /* box-shadow: var(--cast) var(--cast) 0 var(--orange); */
     transition: all 0.2s;
     &:hover {
       --cast: 6px;
+     box-shadow: var(--cast) var(--cast) 0 white;
+     color:black;
+     background: var(--orange);;
     }
   
   }
