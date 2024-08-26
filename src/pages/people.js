@@ -93,7 +93,7 @@ const TestPersonStyles = styled.div`
 const CloudPage = () => {
 
   const [showPics, setShowPics] = useState("");
-  const [llength, setLlength] = useState(200);
+  // const [llength, setLlength] = useState(200);
   // const [images, setImages] = useState([]);
   const { loading, error, data } = useQuery(GET_PEOPLE);
 
@@ -108,13 +108,15 @@ console.log("data",data)
 
   if (showPics === "highlights" && data.highlights[0].images.length > 0) {
     images = ([...data.highlights[0].images]);
+    // setImages([...data.highlights[0].images]);
     console.log("re-rendering with highlights", images)
     
   } else if (showPics === "participants" && data.participants[0].images.length > 0) {
-    // images = [...data.participants[0].images];
-    // console.log("totalImages", images.length);
+    images = [...data.participants[0].images];
+    // setImages([...data.participants[0].images]);
+    console.log("totalImages", images.length);
     // setImages[[]];
-   images = (Array.from({ length: llength }));
+  //  images = (Array.from({ length: llength }));
    console.log("re-rendering with participants", images)
     
   } else{
@@ -123,7 +125,7 @@ console.log("data",data)
     images = []
   }
 // }, [showPics]);t
-const reversed = images.reverse(); // Reverse the order of the copied array
+ // const reversed = images.reverse(); Reverse the order of the copied array
 // // console.log("reversed", reversed);
 const totalImages = images.length;
 const totalImagesSq = Math.sqrt(totalImages);
@@ -212,7 +214,7 @@ const totalImagesSqInt = Math.round(totalImagesSq)
       </div>
       </>
       ) : null}
-      <Footer showPics={showPics} setShowPics={setShowPics} llength={llength} setLlength={setLlength}/>
+      <Footer showPics={showPics} setShowPics={setShowPics} />
     </CloudPageStyles>
   );
 };

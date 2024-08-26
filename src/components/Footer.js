@@ -54,8 +54,8 @@ nav{
     }
 `;
 
-const Footer = ({showPics, setShowPics, llength, setLlength}) => {
-  const [inputValue, setInputValue] = useState("");
+const Footer = ({setShowPics}) => {
+  // const [inputValue, setInputValue] = useState("");
   const clickHandler = () => {
     setShowPics("highlights");
     // setTimeout(()=> {
@@ -68,13 +68,13 @@ const Footer = ({showPics, setShowPics, llength, setLlength}) => {
 
   };
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
 
-  const handleInputButtonClick = () => {
-    setLlength(Number(inputValue));
-  };
+  // const handleInputButtonClick = () => {
+  //   setLlength(Number(inputValue));
+  // };
 
   const refresh = () => {
     window.location.reload();
@@ -87,7 +87,7 @@ const Footer = ({showPics, setShowPics, llength, setLlength}) => {
         </a>
         <Link to="/people">People</Link>
         <button onClick={refresh}>Refresh Page</button>
-  <div className='inputOptionsWrapper'>
+  {/* <div className='inputOptionsWrapper'>
           <p>No of people: {llength}</p>
           <input
     type="number"
@@ -95,7 +95,7 @@ const Footer = ({showPics, setShowPics, llength, setLlength}) => {
     onChange={handleInputChange}
   />
   <button onClick={handleInputButtonClick}>Save</button>
-       </div>
+       </div> */}
         <button onClick={clickHandler}>Show People</button>
       </nav>
     </FooterStyles>

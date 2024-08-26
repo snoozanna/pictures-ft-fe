@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import styled from "styled-components";
-import test from "./../assets/images/test.jpg";
+// import test from "./../assets/images/test.jpg";
 
 const number = 37;
 const FlexItemStyles = styled.div`
@@ -56,8 +56,8 @@ const TestPerson = ({ index, totalImages, totalImagesSqInt, image }) => {
         totalImages={totalImages}
         $imgWidth={imgWidth}
       >
-        <img src={test} alt={`Test image ${index}`} />
-        {/* <img className="img" src={image.asset.url} alt={`Image ${index}`} /> */}
+        {/* <img src={test} alt={`Test image ${index}`} /> */}
+        <img className="img" src={image.asset.url} alt={`Image ${index}`} />
       </FlexItemStyles>
     );
   };
