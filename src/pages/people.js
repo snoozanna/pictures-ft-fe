@@ -76,13 +76,14 @@ const CloudPageStyles = styled.div`
 const FlexContainerStyles = styled.div`
     display: grid;
     grid-auto-rows: 1fr;
-    grid-template-columns: repeat(${(props) => Math.min(props.$totalImagesSqInt, 8)}, 1fr);
-  grid-template-rows: repeat(${(props) => Math.min(props.$totalImagesSqInt, 8)}, 1fr);
+    grid-template-columns: repeat(${(props) => Math.min(props.$totalImagesSqInt, 6)}, 1fr);
+  grid-template-rows: repeat(${(props) => Math.min(props.$totalImagesSqInt, 6)}, 1fr);
     gap: 2rem;
   &.highlight{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-block-start: 10rem;
   }
 `
 

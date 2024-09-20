@@ -61,9 +61,9 @@ const Footer = ({setShowPics}) => {
     // setTimeout(()=> {
     //   setShowPics([]);
     // }, [7500])
-    setTimeout(()=> {
-      setShowPics("participants");
-    }, [9000])
+    // setTimeout(()=> {
+    //   setShowPics("participants");
+    // }, [9000])
 
 
   };
