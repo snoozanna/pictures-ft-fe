@@ -76,8 +76,8 @@ const CloudPageStyles = styled.div`
 const FlexContainerStyles = styled.div`
     display: grid;
     grid-auto-rows: 1fr;
-    grid-template-columns: repeat(${(props) => Math.min(props.$totalImagesSqInt, 14)}, 1fr);
-  grid-template-rows: repeat(${(props) => Math.min(props.$totalImagesSqInt, 14)}, 1fr);
+    grid-template-columns: repeat(${(props) => Math.min(props.$totalImagesSqInt, 8)}, 1fr);
+  grid-template-rows: repeat(${(props) => Math.min(props.$totalImagesSqInt, 8)}, 1fr);
     gap: 2rem;
   &.highlight{
     display: flex;
@@ -130,10 +130,6 @@ console.log("data",data)
 const totalImages = images.length;
 const totalImagesSq = Math.sqrt(totalImages);
 const totalImagesSqInt = Math.round(totalImagesSq)
-
-
-
-
 
   let flexSize = "xlarge";
   if (images.length <= 12) {
