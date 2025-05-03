@@ -15,7 +15,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 
 
-const CloudPageStyles = styled.div`
+const PageStyles = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -28,20 +28,27 @@ const CloudPageStyles = styled.div`
 
 const FlexContainerStyles = styled.div`
     display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: repeat(${(props) => Math.min(props.$totalImagesSqInt, 14)}, 1fr);
-  grid-template-rows: repeat(${(props) => Math.min(props.$totalImagesSqInt, 14)}, 1fr);
+
+  
+    &.highlights {
+      display: grid;
+      width: 100vw;
+      height: 80vh;
+      gap: 1rem;
+      grid-template-columns: repeat(${(props) => props.$cols }, 1fr);
+      grid-template-rows: repeat(${(props) => props.$rows }, 1fr);
+}
+&.participants{
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(${(props) => Math.min(props.$cols, 14)}, 1fr);
+  grid-template-rows: repeat(${(props) => Math.min(props.$rows, 14)}, 1fr);
     gap: 2rem;
-  &.highlight{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+}
 `
 
 
 
-const CloudPage = () => {
+const Page = () => {
 
   const [showPics, setShowPics] = useState("");
   // const [llength, setLlength] = useState(200);
@@ -52,38 +59,54 @@ const CloudPage = () => {
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
   if (!data) return <text>Could not find data</text>;
   let images = []
-
-
 console.log("data",data)
+
+const getGridDimensions = (imageCount, maxCols = 7) => {
+  if (imageCount === 0) return { cols: 1, rows: 1 };
+
+  const squareRoot = Math.sqrt(imageCount);
+  const cols = Math.min(Math.ceil(squareRoot), maxCols);
+  const rows = Math.ceil(imageCount / cols);
+  return { cols, rows };
+};
+
   // useEffect(() => {
 
   if (showPics === "highlights" && data.highlights[0].images.length > 0) {
     images = ([...data.highlights[0].images]);
+
     // setImages([...data.highlights[0].images]);
-    console.log("re-rendering with highlights", images)
+    // console.log("re-rendering with highlights", images)
     
   } else if (showPics === "participants" && data.participants[0].images.length > 0) {
     images = [...data.participants[0].images];
+
     // setImages([...data.participants[0].images]);
-    console.log("totalImages", images.length);
+    // console.log("totalImages", images.length);
     // setImages[[]];
   //  images = (Array.from({ length: llength }));
-   console.log("re-rendering with participants", images)
+  //  console.log("re-rendering with participants", images)
     
   } else{
-    console.log("showpics is", showPics, data.participants[0].images.length )
+    // console.log("showpics is", showPics, data.participants[0].images.length )
     // setImages([]);
     images = []
   }
 // }, [showPics]);t
  // const reversed = images.reverse(); Reverse the order of the copied array
 // // console.log("reversed", reversed);
+// const totalImages = images.length;
+
+
 const totalImages = images.length;
 const totalImagesSq = Math.sqrt(totalImages);
 const totalImagesSqInt = Math.round(totalImagesSq)
+const { cols, rows } = getGridDimensions(totalImages, 7);
 
-
-
+console.log("totalImages", totalImages)
+console.log("totalImagesSq", totalImagesSq)
+console.log("totalImagesSqInt", totalImagesSqInt)
+console.log("cols, rows", cols, rows)
 
 
   let flexSize = "xlarge";
@@ -109,12 +132,14 @@ const totalImagesSqInt = Math.round(totalImagesSq)
 
 
   return (
-    <CloudPageStyles>
+    <PageStyles>
        {showPics === "participants" ? (
         <>
-        <FlexContainerStyles 
-        className={`${flexSize}`} 
-        $totalImagesSqInt={totalImagesSqInt}>  
+        <FlexContainerStyles
+  className={`${flexSize} participants`}
+  $cols={cols}
+  $rows={rows}
+>
           {images.map((image, index) => {
          console.log("showing image");
           return (
@@ -132,18 +157,19 @@ const totalImagesSqInt = Math.round(totalImagesSq)
       </>
     ) : showPics === "highlights" ? (
       <>
-        <FlexContainerStyles className={`${flexSize} highlight`} $totalImagesSqInt={totalImagesSqInt}>
+        <FlexContainerStyles className={`${flexSize} highlights`} 
+          $cols={cols}
+          $rows={rows}
+          $totalImagesSqInt={totalImagesSqInt}>
   
-          {images.map((image, index) => {
+         {images.map((image, index) => {
          console.log("showing image");
           return (
             <Highlight key={index}
                 index={index}
-                image={image}
-                totalImages={images.length}
-                showPics={showPics}/>
-          );  
-        })}   
+                image={image}/>
+          ); 
+        })}    
         </FlexContainerStyles>
         <div id="target" style={{ height: '1vh' }}>
         {/* <h1>Target Section</h1> */}
@@ -151,10 +177,10 @@ const totalImagesSqInt = Math.round(totalImagesSq)
       </>
       ) : null}
       <Footer showPics={showPics} setShowPics={setShowPics} />
-    </CloudPageStyles>
+    </PageStyles>
   );
 };
 
 
-export default CloudPage;
+export default Page;
 

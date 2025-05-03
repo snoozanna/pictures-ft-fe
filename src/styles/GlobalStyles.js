@@ -26,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
     --headings: "KantataAksara";
     --subheadings: "Inconsolata";
     --body:"Roboto";
-    --padding: 3rem;
+    --padding: 2rem;
   }
 
   html {
@@ -44,6 +44,13 @@ body {
     font-size: 1.6rem;
   margin: 0;
   color: white;
+}
+
+html, body, #___gatsby {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 *,
@@ -232,7 +239,7 @@ ul.typographic {
 }
   
 
- 
+
 
 
 `;
