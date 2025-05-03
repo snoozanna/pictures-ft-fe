@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { devices } from '../styles/breakpoints.js';
-import Footer from '../components/Footer.js';
 import { Link } from 'gatsby';
 
 

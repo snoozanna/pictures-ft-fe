@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import styled from "styled-components";
 import { urlFor } from "../utils/sanityImageUrl.js"; // Adjust path
+gsap.registerPlugin(CSSPlugin);
 
 const FlexItemStyles = styled.div`
   min-width: 3vw;
   width: 80%;
+  max-width: 20%;
 `;
 
-const Person = ({ index, totalImages, totalImagesSqInt, image }) => {
-  const imgWidth = Math.round(100 / totalImagesSqInt);
-  gsap.registerPlugin(ScrollToPlugin, CSSPlugin);
-
+const Highlight = ({ index, totalImages, image }) => {
   useEffect(() => {
-    let randomDelay = Math.random() * 10000;
-    let animationDuration = 2;
+    let randomDelay = Math.random() * 6000;
+    let animationDuration = 0.5;
 
     gsap.fromTo(
       `.element-${index}`,
@@ -28,39 +26,29 @@ const Person = ({ index, totalImages, totalImagesSqInt, image }) => {
         delay: randomDelay / 1000,
       }
     );
-  }, []);
-
-  useEffect(() => {
-    gsap.to(window, {
-      duration: 20,
-      scrollTo: { y: "#target", offsetY: 50 },
-      delay: 2,
-      ease: "power2.inOut",
-    });
-  }, []);
+  }, [index]);
 
   const optimizedUrl = urlFor(image.asset.url)
-    .width(400) // Or base on imgWidth or screen size
-    .format("webp")
-    .quality(75)
+    .width(600) // adjust based on expected display size
+    .format("webp") // modern, smaller image format
+    .quality(75) // balance between quality and file size
     .url();
 
   return (
     <FlexItemStyles
-      className={`img-wrapper element-${index}`}
+      className={`img-wrapper element-${index} highlight`}
       totalImages={totalImages}
-      $imgWidth={imgWidth}
     >
       <img
         className="img"
         src={optimizedUrl}
         alt={`Image ${index}`}
-        loading="lazy"
-        decoding="async"
-        width="100%"
+        loading="lazy" // lazy loading
+        decoding="async" // hint for async decode
+        width="100%" // responsive
       />
     </FlexItemStyles>
   );
 };
 
-export default Person;
+export default Highlight;

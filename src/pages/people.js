@@ -4,11 +4,10 @@ import styled from "styled-components";
 import { useQuery, useLazyQuery, gql } from "@apollo/client";
 import Loader from "../components/Loader/index.js";
 import Footer from "../components/Footer.js";
-import Person from "../components/Person.js";
 import test from "./../assets/images/test.jpg";
 import GET_PEOPLE from "../queries/GET_PEOPLE.js";
-import TestPerson from "../components/TestPerson.js";
-import TestHighlight from "../components/TestHighlight.js";
+import Person from "../components/Person.js";
+import Highlight from "../components/Highlight.js";
 import { gsap } from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
@@ -27,52 +26,6 @@ const CloudPageStyles = styled.div`
 
 `;
 
-// const FlexContainerStyles = styled.div`
-//   display: grid;
-//   grid-auto-rows: 1fr; /* Set the height of each row to 1fr for equal distribution */
-//   /* Adjust the gap as needed */
-//   justify-content: space-evenly;
-//   align-content: start; /* Adjust this as needed to control vertical alignment */
-//   overflow: auto;
-//   grid-auto-flow: dense; /* Controls how items are placed in the grid */
-//   &.xlarge {
-//     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.large {
-//     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.medium {
-//     grid-template-columns: repeat(auto-fill, minmax(12%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.med {
-//     grid-template-columns: repeat(auto-fill, minmax(11%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.small {
-//     grid-template-columns: repeat(auto-fill, minmax(9%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.xsmall {
-//     grid-template-columns: repeat(auto-fill, minmax(8%, 1fr));
-//     grid-gap: 2rem;
-//   }
-//   &.xxsmall {
-//     grid-template-columns: repeat(auto-fill, minmax(7.5%, 1fr));
-//     grid-gap: 1rem;
-//   }
-//   &.xxxsmall {
-//     grid-template-columns: repeat(auto-fill, minmax(7%, 1fr));
-//     grid-gap: 1rem;
-//   }
-//   &.xxxxsmall {
-//     grid-template-columns: repeat(auto-fill, minmax(6.5%, 1fr));
-//     grid-gap: 1rem;
-//   }
-// `;
-
 const FlexContainerStyles = styled.div`
     display: grid;
     grid-auto-rows: 1fr;
@@ -86,9 +39,7 @@ const FlexContainerStyles = styled.div`
   }
 `
 
-const TestPersonStyles = styled.div`
 
-`
 
 const CloudPage = () => {
 
@@ -163,26 +114,11 @@ const totalImagesSqInt = Math.round(totalImagesSq)
         <>
         <FlexContainerStyles 
         className={`${flexSize}`} 
-        $totalImagesSqInt={totalImagesSqInt}>
-          {/* {images.map((image, index) => {
-            console.log("showingimage")
-            return       
-            (
-              <Person
-                key={index}
-                index={index}
-                image={image}
-                totalImages={images.length}
-                showPics={showPics}
-              />
-           
-            );
-          })} */}
-  
+        $totalImagesSqInt={totalImagesSqInt}>  
           {images.map((image, index) => {
          console.log("showing image");
           return (
-            <TestPerson key={index}
+            <Person key={index}
                 index={index}
                 totalImagesSqInt={totalImagesSqInt}
                 totalImages={images.length}
@@ -201,7 +137,7 @@ const totalImagesSqInt = Math.round(totalImagesSq)
           {images.map((image, index) => {
          console.log("showing image");
           return (
-            <TestHighlight key={index}
+            <Highlight key={index}
                 index={index}
                 image={image}
                 totalImages={images.length}
