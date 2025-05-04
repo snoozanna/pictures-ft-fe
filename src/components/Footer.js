@@ -58,9 +58,9 @@ const Footer = ({setShowPics}) => {
   // const [inputValue, setInputValue] = useState("");
   const clickHandler = () => {
     setShowPics("highlights");
-    // setTimeout(()=> {
-    //   setShowPics([]);
-    // }, [7500])
+    setTimeout(()=> {
+      setShowPics([]);
+    }, [7500])
     setTimeout(()=> {
       setShowPics("participants");
     }, [9000])
