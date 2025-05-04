@@ -12,31 +12,34 @@ const ImageWrapper = styled.div`
   height: 100%;
   overflow: hidden;
   display: flex;
-    justify-content: center;
+  justify-content: center;
 
   img {
-
     height: 100%;
     object-fit: cover;
     display: block;
   }
 `;
 
-const Highlight = ({ index, image }) => {
+const Highlight = ({ index, image, addFadeClassToHighlights }) => {
   useEffect(() => {
-    let randomDelay = Math.random() * 6000;
+    const selector = `.element-${index}`;
+    const delay = Math.random() * 3; // Random delay for staggered effect
 
+    // Fade in when the component is first rendered
+    if (!addFadeClassToHighlights) {
     gsap.fromTo(
-      `.element-${index}`,
+      selector,
       { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        delay: randomDelay / 1000,
-      }
+      { opacity: 1, y: 0, duration: 0.5, delay }
     );
-  }, [index]);
+  }
+
+    // If the fade-out class is passed, trigger the fade-out animation
+    if (addFadeClassToHighlights) {
+      gsap.to(selector, { opacity: 0, duration: 1, delay: 0 }); // Fade out after 2 seconds
+    }
+  }, [index, addFadeClassToHighlights]);
 
   const optimizedUrl = urlFor(image.asset.url)
     .width(1200)
@@ -46,7 +49,7 @@ const Highlight = ({ index, image }) => {
 
   return (
     <ImageWrapper className={`element-${index}`}>
-    {/* <img src={test} alt={`Test image ${index}`} /> */}
+        {/* <img src={test} alt={`Test image ${index}`} /> */}
       <img
         src={optimizedUrl}
         alt={`Image ${index}`}
@@ -58,15 +61,3 @@ const Highlight = ({ index, image }) => {
 };
 
 export default Highlight;
-
-
-
-
-{/* <img
-className="img"
-src={optimizedUrl}
-alt={`Image ${index}`}
-loading="lazy" // lazy loading
-decoding="async" // hint for async decode
-width="100%" // responsive
-/> */}

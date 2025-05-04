@@ -28,8 +28,6 @@ const PageStyles = styled.div`
 
 const FlexContainerStyles = styled.div`
     display: grid;
-
-  
     &.highlights {
       display: grid;
       width: 100vw;
@@ -38,11 +36,11 @@ const FlexContainerStyles = styled.div`
       grid-template-columns: repeat(${(props) => props.$cols }, 1fr);
       grid-template-rows: repeat(${(props) => props.$rows }, 1fr);
 }
-&.participants{
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(${(props) => Math.min(props.$cols, 14)}, 1fr);
-  grid-template-rows: repeat(${(props) => Math.min(props.$rows, 14)}, 1fr);
-    gap: 2rem;
+    &.participants{
+      grid-auto-rows: 1fr;
+      grid-template-columns: repeat(${(props) => Math.min(props.$cols, 14)}, 1fr);
+      grid-template-rows: repeat(${(props) => Math.min(props.$rows, 14)}, 1fr);
+        gap: 2rem;
 }
 `
 
@@ -51,6 +49,8 @@ const FlexContainerStyles = styled.div`
 const Page = () => {
 
   const [showPics, setShowPics] = useState("");
+  const [addFadeClassToHighlights, setAddFadeClassToHighlights] = useState(false);
+  console.log("addFadeClassToHighlights", addFadeClassToHighlights)
   // const [llength, setLlength] = useState(200);
   // const [images, setImages] = useState([]);
   const { loading, error, data } = useQuery(GET_PEOPLE);
@@ -103,10 +103,6 @@ const totalImagesSq = Math.sqrt(totalImages);
 const totalImagesSqInt = Math.round(totalImagesSq)
 const { cols, rows } = getGridDimensions(totalImages, 7);
 
-console.log("totalImages", totalImages)
-console.log("totalImagesSq", totalImagesSq)
-console.log("totalImagesSqInt", totalImagesSqInt)
-console.log("cols, rows", cols, rows)
 
 
   let flexSize = "xlarge";
@@ -167,7 +163,9 @@ console.log("cols, rows", cols, rows)
           return (
             <Highlight key={index}
                 index={index}
-                image={image}/>
+                image={image}
+                addFadeClassToHighlights={addFadeClassToHighlights}
+                />
           ); 
         })}    
         </FlexContainerStyles>
@@ -176,11 +174,10 @@ console.log("cols, rows", cols, rows)
       </div>
       </>
       ) : null}
-      <Footer showPics={showPics} setShowPics={setShowPics} />
+      <Footer showPics={showPics} setShowPics={setShowPics} setAddFadeClassToHighlights={setAddFadeClassToHighlights} />
     </PageStyles>
   );
 };
 
 
 export default Page;
-
