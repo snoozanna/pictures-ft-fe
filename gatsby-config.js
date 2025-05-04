@@ -42,18 +42,6 @@ module.exports = {
       },
     },
     "gatsby-plugin-apollo",
-    {
-      resolve: "gatsby-source-cloudinary",
-      options: {
-        cloudName: "dcwl3hold",
-        apiKey: "815496554688796",
-        apiSecret: "00USunOTeGn_pfeaT2eov9RPsPI",
-        resourceType: "image", // Adjust as needed
-        type: "upload", // Adjust as needed
-        prefix: `krishna/`,
-        maxResults: 150,
-      },
-    },
     `gatsby-transformer-sharp`,
     {
       resolve: "gatsby-plugin-anchor-links",
