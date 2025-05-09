@@ -19,7 +19,7 @@ const PageStyles = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 100%;
+  /* width: 100%;*/
   /* align-items: center; */
   min-height: 90vh;
   margin-bottom: 10rem;
