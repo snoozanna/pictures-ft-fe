@@ -31,7 +31,6 @@ const HomePageStyles = styled.section`
 `;
 
 const HomePage = () => {
- console.log("process.env.GATSBY_SANITY_TOKEN", process.env.GATSBY_SANITY_TOKEN)
   return (
     <HomePageStyles>
       <h3>First Trimester Pictures </h3>
