@@ -48,7 +48,7 @@ const Page = () => {
   
   let images = []
 
-  const getGridDimensions = (imageCount, maxCols = 7) => {
+  const getGridDimensions = (imageCount, maxCols = 5) => {
     if (imageCount === 0) return { cols: 1, rows: 1 };
 
     const squareRoot = Math.sqrt(imageCount);
@@ -68,7 +68,7 @@ const Page = () => {
   const totalImages = images.length;
   const totalImagesSq = Math.sqrt(totalImages);
   const totalImagesSqInt = Math.round(totalImagesSq)
-  const { cols, rows } = getGridDimensions(totalImages, 7);
+  const { cols, rows } = getGridDimensions(totalImages, 5);
 
   // Trigger scroll animation only for participants section
   useEffect(() => {
@@ -86,7 +86,7 @@ const Page = () => {
       // Scroll duration = reveal time + extra time to see all content
       // const scrollDuration = totalRevealTime + Math.max(10, rows * 1.5);
       // console.log("totalRevealTime", totalRevealTime)
-      const scrollDuration = totalRevealTime + 20;
+      const scrollDuration = totalRevealTime + 120;
       console.log("scrollDuration", scrollDuration)
       // Start scrolling immediately with small delay for DOM ready 
       const timer = setTimeout(() => {

@@ -24,7 +24,7 @@ const ImageWrapper = styled.div`
 const Highlight = ({ index, image, addFadeClassToHighlights }) => {
   useEffect(() => {
     const selector = `.element-${index}`;
-    const delay = Math.random() * 3; // Random delay for staggered effect
+    const delay = index * 0.3;
 
     // Fade in when the component is first rendered
     if (!addFadeClassToHighlights) {
