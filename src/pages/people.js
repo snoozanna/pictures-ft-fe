@@ -31,7 +31,7 @@ const FlexContainerStyles = styled.div`
       grid-template-rows: repeat(${(props) => props.$rows }, 1fr);
 }
     &.participants{
-      ${'' /* width: 100vw; */}
+      width: 100vw;
       grid-auto-rows: 1fr;
       grid-template-columns: repeat(${(props) => Math.min(props.$cols, 14)}, 1fr);
       grid-template-rows: repeat(${(props) => Math.min(props.$rows, 14)}, 1fr);
