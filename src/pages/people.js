@@ -31,6 +31,7 @@ const FlexContainerStyles = styled.div`
       grid-template-rows: repeat(${(props) => props.$rows }, 1fr);
 }
     &.participants{
+      ${'' /* width: 100vw; */}
       grid-auto-rows: 1fr;
       grid-template-columns: repeat(${(props) => Math.min(props.$cols, 14)}, 1fr);
       grid-template-rows: repeat(${(props) => Math.min(props.$rows, 14)}, 1fr);
@@ -48,7 +49,7 @@ const Page = () => {
   
   let images = []
 
-  const getGridDimensions = (imageCount, maxCols = 5) => {
+  const getGridDimensions = (imageCount, maxCols = 4) => {
     if (imageCount === 0) return { cols: 1, rows: 1 };
 
     const squareRoot = Math.sqrt(imageCount);
@@ -68,7 +69,7 @@ const Page = () => {
   const totalImages = images.length;
   const totalImagesSq = Math.sqrt(totalImages);
   const totalImagesSqInt = Math.round(totalImagesSq)
-  const { cols, rows } = getGridDimensions(totalImages, 5);
+  const { cols, rows } = getGridDimensions(totalImages, 4);
 
   // Trigger scroll animation only for participants section
   useEffect(() => {
