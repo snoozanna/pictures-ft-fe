@@ -57,14 +57,15 @@ nav{
 const Footer = ({setShowPics, setAddFadeClassToHighlights}) => {
   // const [inputValue, setInputValue] = useState("");
   const clickHandler = () => {
-    setShowPics("highlights");
+    setShowPics("participants");
+    // setShowPics("highlights");
     
-    setTimeout(()=> {
-      setAddFadeClassToHighlights(true);
-    }, [6500])
-    setTimeout(()=> {
-      setShowPics("participants");
-    }, [8000])
+    // setTimeout(()=> {
+    //   setAddFadeClassToHighlights(true);
+    // }, [6500])
+    // setTimeout(()=> {
+    //   setShowPics("participants");
+    // }, [8000])
 
 
   };
