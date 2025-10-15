@@ -18,6 +18,7 @@ const PageStyles = styled.div`
   justify-content: flex-start;
   min-height: 90vh;
   margin-bottom: 10rem;
+  margin-top:8rem;
 `;
 
 const FlexContainerStyles = styled.div`

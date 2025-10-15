@@ -24,6 +24,7 @@ const MainStyles = styled.main`
   justify-content: center;
   /* align-items: center; */
   padding: 4rem;
+
   @media ${devices.mobileL} {
     margin-bottom: 8rem;
   }
